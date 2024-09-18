@@ -42,3 +42,8 @@ if st.button("Process Download"):
 
     else:
         st.error("Please enter a valid YouTube URL")
+
+# Add a credit line at the bottom of the app
+st.markdown("---")  # Add a horizontal line for separation
+st.markdown("<h5 style='text-align: center;'>Created by Mohaimin</h5>", unsafe_allow_html=True)
+
