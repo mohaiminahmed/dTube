@@ -10,17 +10,17 @@ st.title("dTube - YouTube Video Downloader")
 video_url = st.text_input("Enter the YouTube video URL")
 
 # Button to download the video
-if st.button("Download Video"):
+if st.button("Process Download"):
     if video_url:
         try:
             # Inform the user that the download is in progress
             with st.spinner('Downloading... Please wait...'):
-                # Create a temporary directory on the Streamlit cloud server
+                # Create a temporary directory on the cloud server
                 with tempfile.TemporaryDirectory() as tmpdirname:
                     # Define yt-dlp options to save in the temporary directory
                     ydl_opts = {
-                        'format': 'best',
-                        'outtmpl': os.path.join(tmpdirname, 'downloaded_video.mp4'),  # Save to the temp directory
+                        'format': 'best',  # Choose the best quality format
+                        'outtmpl': os.path.join(tmpdirname, 'downloaded_video.mp4'),  # Path for the downloaded video
                     }
 
                     # Download the video using yt-dlp
@@ -31,11 +31,11 @@ if st.button("Download Video"):
                     video_path = os.path.join(tmpdirname, 'downloaded_video.mp4')
 
                     # Notify the user that the download is complete
-                    st.success(f"Video downloaded successfully!")
+                    st.success("Video has been downloaded successfully!")
 
-                    # Provide a link to download the video from the cloud to their local machine
+                    # Provide a link to download the video
                     with open(video_path, 'rb') as f:
-                        st.download_button('Download the video', f, file_name='downloaded_video.mp4')
+                        st.download_button('SAVE', f, file_name='dTube_Downloader.mp4')
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
